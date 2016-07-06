@@ -17,7 +17,7 @@ class SCBroadcaster implements Broadcaster
     /**
      * Construct
      *
-     * @param SocketCluster $socketcluster
+     * @param SocketCluster\SocketCluster $socketcluster
      *
      * @param void
      */
