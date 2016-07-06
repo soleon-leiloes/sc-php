@@ -1,0 +1,18 @@
+# .travis.yml
+language: php
+
+php:
+  - 5.4
+  - 5.6
+
+before_script:
+  - curl -s http://getcomposer.org/installer | php
+  - php composer.phar self-update
+  - php composer.phar install --prefer-source --no-interaction
+
+script:
+  - phpunit -c phpunit.xml --colors --coverage-clover=coverage.clover
+
+after_script:
+  - test "5.4" == "${TRAVIS_PHP_VERSION}" && wget https://scrutinizer-ci.com/ocular.phar
+  - test -f ocular.phar && php ocular.phar code-coverage:upload --format=php-clover coverage.clover

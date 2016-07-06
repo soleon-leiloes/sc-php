@@ -1,0 +1,35 @@
+{
+    "name": "soleon/sc-php",
+    "description": "SocketCluster - PHP library for interacting with the SocketCluster.io",
+    "keywords": ["socketcluster", "realtime", "php", "laravel", "broadcasting"],
+    "license": "MIT",
+    "homepage": "https://github.com/soleon-leiloes/sc-php",
+    "authors": [
+        {
+            "name": "Renato Moura",
+            "email": "renato@soleon.com.br"
+        }
+    ],
+    "require": {
+        "textalk/websocket": "1.0.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.0",
+        "mockery/mockery": "0.9.*",
+        "laravel/framework": "5.2.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "SocketCluster\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "stable",
+    "suggest": {
+        "laravel/framework": "Framework Laravel (5.2.*)"
+    }
+}

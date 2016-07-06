@@ -1,0 +1,18 @@
+/vendor
+composer.lock
+composer.phar
+
+# OS generated files #
+*~
+._*
+.~lock.*
+*.tmp
+*.swp
+.DS_Store
+.idea/
+.buildpath
+.project
+.settings
+/nbproject/
+*.sublime-project
+*.sublime-workspace
