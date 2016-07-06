@@ -45,7 +45,7 @@ class SCServiceProvider extends BaseServiceProvider
                 $config['uri'] = sprintf("%s://%s%s/%s", $scheme, $host, $port, $path);
             }
             
-            $websocket  = new WebSocketClient($config['uri']);
+            $websocket = new WebSocketClient($config['uri']);
             return new SocketCluster($websocket);
         });
 

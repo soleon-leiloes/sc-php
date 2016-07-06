@@ -44,7 +44,7 @@ class SocketCluster
      * @param mixed        $data
      * @param Closure|null $callback
      *
-     * @return void
+     * @return boolean
      */
     public function publish($channel, $data, Closure $callback = null)
     {
@@ -63,7 +63,7 @@ class SocketCluster
      * @param array        $data
      * @param Closure|null $callback
      *
-     * @return void
+     * @return boolean
      */
     public function emit($event, array $data, Closure $callback = null)
     {
@@ -100,7 +100,7 @@ class SocketCluster
     /**
      * Get Error
      *
-     * @return string|null
+     * @return string
      */
     public function error()
     {
