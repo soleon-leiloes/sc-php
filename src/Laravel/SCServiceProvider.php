@@ -37,11 +37,11 @@ class SCServiceProvider extends BaseServiceProvider
             $config = $app['config']['broadcasting']['connections']['socketcluster'];
 
             if (empty($config['uri'])) {
-                $scheme = $config['secure']==true ? 'wss' : 'ws';
+                $scheme = ($config['secure'] == true) ? 'wss' : 'ws';
                 $host   = trim($config['host'], "/");
                 $port   = !empty($config['port']) ? ":".$config['port'] : '';
                 $path   = trim($config['path'], "/");
-                $path   = !empty($path) ? $path . "/" : '';
+                $path   = !empty($path) ? $path."/" : '';
                 $config['uri'] = sprintf("%s://%s%s/%s", $scheme, $host, $port, $path);
             }
             

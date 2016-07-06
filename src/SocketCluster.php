@@ -65,7 +65,7 @@ class SocketCluster
      *
      * @return boolean
      */
-    public function emit($event, array $data, Closure $callback = null)
+    protected function emit($event, array $data, Closure $callback = null)
     {
         try {
             $eventData = [
@@ -85,16 +85,6 @@ class SocketCluster
             $this->error = $e->getMessage();
             return false;
         }
-    }
-
-    /**
-     * Receive
-     *
-     * @return string
-     */
-    public function receive()
-    {
-        return $this->websocket->receive();
     }
 
     /**
