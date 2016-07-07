@@ -1,4 +1,4 @@
-# SocketCluster for PHP
+# SocketCluster - PHP library for interacting with the SocketCluster.io
 
 [![Build Status](https://travis-ci.org/soleon-leiloes/sc-php.svg?branch=master)](https://travis-ci.org/soleon-leiloes/sc-php)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/soleon-leiloes/sc-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/soleon-leiloes/sc-php/?branch=master)
@@ -32,10 +32,10 @@ $optionsOrUri = [
   ],
 ];
 
-$websocket = WebSocket::factory($optionsOrUri);
-$socket = new SocketCluster\SocketCluster($websocket);
+$websocket = \SocketCluster\WebSocket::factory($optionsOrUri);
+$socket = new \SocketCluster\SocketCluster($websocket);
 
 // Event Emit
-$data = ['name' => 'FooBar'];
+$data = ['message' => 'FooBar'];
 $socket->publish('CHANNEL_NAME', $data);
 ~~~
