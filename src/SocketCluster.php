@@ -28,16 +28,6 @@ class SocketCluster
     }
 
     /**
-     * Get Websocket
-     *
-     * @return WebSocket\Client
-     */
-    public function getWebsocket()
-    {
-        return $this->websocket;
-    }
-
-    /**
      * Publish Channel
      *
      * @param string       $channel

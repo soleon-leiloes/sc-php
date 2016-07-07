@@ -5,6 +5,7 @@ namespace Tests\Laravel;
 use Tests\TestCase;
 use Mockery as m;
 use SocketCluster\Laravel\SCServiceProvider;
+use SocketCluster\WebSocket;
 
 class SCServiceProviderTest extends TestCase
 {
@@ -25,7 +26,7 @@ class SCServiceProviderTest extends TestCase
                     $config = [
                         'secure' => true,
                         'host' => 'localhost',
-                        'port' => 3000,
+                        'port' => '3000',
                         'path' => '/socketcluster/',
                     ];
                     $app['config'] = ['broadcasting' => ['connections' => ['socketcluster' => $config]]];
@@ -33,8 +34,9 @@ class SCServiceProviderTest extends TestCase
 
                     $sc = $closure($app);
                     $test->assertInstanceOf($shouldBe[$name], $sc);
-                    $uriExpected = 'wss://localhost:3000/socketcluster/';
-                    $this->assertAttributeEquals($uriExpected, 'socket_uri', $sc->getWebsocket());
+                    
+                    $expected = WebSocket::factory('wss://localhost:3000/socketcluster/');
+                    $this->assertAttributeEquals($expected, 'websocket', $sc);
                 }
             );
 
