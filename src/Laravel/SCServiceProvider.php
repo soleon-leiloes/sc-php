@@ -34,7 +34,7 @@ class SCServiceProvider extends BaseServiceProvider
     protected function registerSocketCluster()
     {
         $this->app->singleton('SocketCluster', function ($app) {
-            $config = $app['config']['broadcasting']['connections']['socketcluster'];
+            $config = $app['config']['broadcasting']['connections']['socketcluster']['options'];
             $websocket = WebSocket::factory($config);
             return new SocketCluster($websocket);
         });

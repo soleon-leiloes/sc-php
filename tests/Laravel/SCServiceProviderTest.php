@@ -23,13 +23,13 @@ class SCServiceProviderTest extends TestCase
                 // with a closure that returns the correct
                 // object.
                 function ($name, $closure) use ($test, $app) {
-                    $config = [
+                    $options = [
                         'secure' => true,
                         'host' => 'localhost',
                         'port' => '3000',
                         'path' => '/socketcluster/',
                     ];
-                    $app['config'] = ['broadcasting' => ['connections' => ['socketcluster' => $config]]];
+                    $app['config'] = ['broadcasting' => ['connections' => ['socketcluster' => ['options' => $options]]]];
                     $shouldBe = ['SocketCluster' => 'SocketCluster\SocketCluster'];
 
                     $sc = $closure($app);
