@@ -1,13 +1,13 @@
 <?php
 
-namespace Tests\Laravel;
+namespace Tests\Providers;
 
 use Tests\TestCase;
 use Mockery as m;
-use SocketCluster\Laravel\SCServiceProvider;
+use SocketCluster\Providers\LaravelServiceProvider;
 use SocketCluster\WebSocket;
 
-class SCServiceProviderTest extends TestCase
+class LaravelServiceProviderTest extends TestCase
 {
     public function testShouldRegister()
     {
@@ -41,7 +41,7 @@ class SCServiceProviderTest extends TestCase
             );
 
         
-        $sp = new SCServiceProvider($app);
+        $sp = new LaravelServiceProvider($app);
         $this->assertEquals(['SocketCluster'], $sp->provides());
 
         $sp->register();
@@ -63,7 +63,7 @@ class SCServiceProviderTest extends TestCase
             $this->assertAttributeEquals($app['SocketCluster'], 'socketcluster', $broadcaster);
         });
 
-        $sp = new SCServiceProvider($app);
+        $sp = new LaravelServiceProvider($app);
 
         $sp->boot();
 

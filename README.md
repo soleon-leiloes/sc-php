@@ -57,7 +57,7 @@ $socket->publish('CHANNEL_NAME', $data);
 Then, add this service provider in your providers array `[app/config/app.php]`:
 
 ~~~php
-SocketCluster\Laravel\SCServiceProvider::class,
+SocketCluster\Providers\LaravelServiceProvider::class,
 ~~~
 
 Then, add this Facade to your aliases array `[app/config/app.php]`:
@@ -92,6 +92,7 @@ Edit `[app/config/broadcasting.php]`:
 ### Pimple 
 
 [Pimple](http://pimple.sensiolabs.org/) is a simple PHP Dependency Injection Container
+
 Examples of frameworks that use: [Silex](http://silex.sensiolabs.org/), [Slim](http://www.slimframework.com/)
 
 Registering this service provider

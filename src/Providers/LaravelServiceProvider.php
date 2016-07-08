@@ -1,13 +1,15 @@
 <?php
 
-namespace SocketCluster\Laravel;
+namespace SocketCluster\Providers;
 
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Illuminate\Broadcasting\BroadcastManager;
 use SocketCluster\WebSocket;
 use SocketCluster\SocketCluster;
+use SocketCluster\Laravel\SCBroadcaster;
+use SocketCluster\Laravel\SCFacade;
 
-class SCServiceProvider extends BaseServiceProvider
+class LaravelServiceProvider extends BaseServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
