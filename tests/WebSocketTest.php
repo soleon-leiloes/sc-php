@@ -33,4 +33,15 @@ class WebSocketTest extends TestCase
         $expected = new \WebSocket\Client('ws://localhost:4000/socketcluster/?servicekey=abc');
         $this->assertEquals($expected, $websocket);
     }
+
+    public function testFactoryWithOptionsDefault()
+    {
+        $options = [
+          'host' => 'localhost',
+        ];
+        $websocket = WebSocket::factory($options);
+
+        $expected = new \WebSocket\Client('ws://localhost/');
+        $this->assertEquals($expected, $websocket);
+    }
 }
