@@ -69,6 +69,11 @@ Then, add this Facade to your aliases array `[app/config/app.php]`:
 Next you have to copy the configuration to your `connections` array `[app/config/broadcasting.php]`:
 
 ~~~php
+/*
+ * Set default broadcasting driver to socketcluster
+ */
+'default' => env('BROADCAST_DRIVER', 'socketcluster'),
+
 'socketcluster' => [
     'driver' => 'socketcluster',
     'options' => [
@@ -81,13 +86,70 @@ Next you have to copy the configuration to your `connections` array `[app/config
 ]
 ~~~
 
-Edit `[app/config/broadcasting.php]`:
-~~~php
-/*
- * Set default broadcasting driver to socketcluster
- */
-'default' => env('BROADCAST_DRIVER', 'socketcluster'),
-~~~
+**Usage Laravel**
+
+- With Facade
+```php
+SocketCluster::publish('ChannelName', ['message' => 'Test publish!!']);
+```
+
+With Event Listener
+
+Add a custom broadcast event to your application example `[app/events/PublishToSocketClusterEvent.php]`:
+
+```php
+namespace App\Events;
+
+use App\Events\Event;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+
+class PublishToSocketClusterEvent implements ShouldBroadcast
+{
+    use SerializesModels
+
+    /**
+     * Content Message
+     * @var string
+     */
+    public $message;
+
+    /**
+     * Construct Event
+     * @param string $message
+     */
+    public function __construct($message)
+    {
+        $this->message = $message;
+    }
+
+    /**
+     * Get the channels the event should broadcast on.
+     * @return array
+     */
+    public function broadcastOn()
+    {
+        return ['channelName'];
+    }
+
+    /**
+     * Get the data to send.
+     * @return array
+     */
+    public function broadcastWith()
+    {
+      return [
+        'message' => $this->message
+      ]
+    }
+}
+```
+
+Now to publish in your application simply fire the event:
+
+```php
+event(new App\Events\PublishToSocketClusterEvent('Test publish!!'));
+```
 
 ### Pimple 
 
@@ -109,7 +171,7 @@ $app->register(new SocketCluster\Providers\PimpleServiceProvider(), array(
 ));
 ~~~
 
-**Usage**
+**Usage Pimple**
 
 ~~~php
 $app['socketcluster']->publish('CHANNEL_NAME', $data);
