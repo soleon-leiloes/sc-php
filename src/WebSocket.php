@@ -26,28 +26,33 @@ class WebSocket
      */
     protected static function parseOptions($options)
     {
-        if (!is_array($options)) {
-            $options = parse_url($options);
-        }
+        $default = [
+            'scheme' => '',
+            'host' => '',
+            'port' => '',
+            'path' => '',
+            'query' => [],
+            'fragment' => '',
+        ];
 
-        $default = ['scheme'=>'', 'host'=>'', 'port'=>'', 'path'=>'', 'query'=>[], 'fragment'=>''];
-        $options = array_merge($default, $options);
+        $optArr = (!is_array($options)) ? parse_url($options) : $options;
+        $optArr = array_merge($default, $optArr);
 
-        if (isset($options['secure'])) {
-            $scheme = ((bool) $options['secure']) ? 'wss' : 'ws';
+        if (isset($optArr['secure'])) {
+            $scheme = ((bool) $optArr['secure']) ? 'wss' : 'ws';
 
         } else {
-            $scheme = (in_array($options['scheme'], ['wss', 'https'])) ? 'wss' : 'ws';
+            $scheme = (in_array($optArr['scheme'], ['wss', 'https'])) ? 'wss' : 'ws';
         }
 
-        $query = $options['query'];
+        $query = $optArr['query'];
         if (!is_array($query)) {
-            parse_str($options['query'], $query);
+            parse_str($optArr['query'], $query);
         }
 
-        $host = trim($options['host'], "/");
-        $port = !empty($options['port']) ? ":".$options['port'] : '';
-        $path = trim($options['path'], "/");
+        $host = trim($optArr['host'], "/");
+        $port = !empty($optArr['port']) ? ":".$optArr['port'] : '';
+        $path = trim($optArr['path'], "/");
         $path = !empty($path) ? $path."/" : '';
         $query = count($query) ? '?'.http_build_query($query) : '';
 
