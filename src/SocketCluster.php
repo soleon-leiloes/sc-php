@@ -8,7 +8,7 @@ use Exception;
 class SocketCluster
 {
     /**
-     * @var WebSocket\Client
+     * @var \WebSocket\Client
      */
     protected $websocket;
 
@@ -20,7 +20,7 @@ class SocketCluster
     /**
      * Construct
      *
-     * @param WebSocket\Client $websocket
+     * @param \WebSocket\Client $websocket
      */
     public function __construct(Client $websocket)
     {
@@ -49,13 +49,12 @@ class SocketCluster
     /**
      * Emit Event
      *
-     * @param string       $event
-     * @param array        $data
-     * @param Closure|null $callback
+     * @param string $event
+     * @param array  $data
      *
      * @return boolean
      */
-    protected function emit($event, array $data, Closure $callback = null)
+    protected function emit($event, array $data)
     {
         try {
             $eventData = [

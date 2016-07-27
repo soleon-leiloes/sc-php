@@ -10,14 +10,14 @@ use SocketCluster\SocketCluster;
 class SCBroadcaster implements Broadcaster
 {
     /**
-     * @var SocketCluster\SocketCluster
+     * @var SocketCluster
      */
     protected $socketcluster;
 
     /**
      * Construct
      *
-     * @param SocketCluster\SocketCluster $socketcluster
+     * @param SocketCluster $socketcluster
      *
      * @param void
      */
