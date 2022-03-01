@@ -45,6 +45,9 @@ $optionsOrUri = [
 $websocket = \SocketCluster\WebSocket::factory($optionsOrUri);
 $socket = new \SocketCluster\SocketCluster($websocket);
 
+// Perform Handshake
+$socket->handshake('OPTIONAL_TOKEN');
+
 // Event Emit
 $data = ['message' => 'FooBar'];
 $socket->publish('CHANNEL_NAME', $data);
