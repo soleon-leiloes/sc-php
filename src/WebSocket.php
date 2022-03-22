@@ -14,7 +14,7 @@ class WebSocket
     {
         $socket_uri = self::parseOptions($options);
 
-        return new Client($socket_uri);
+        return new Client($socket_uri, (isset($options['origin'])) ? array('headers' => array('origin' => trim($options['origin'], '/'))) : array());
     }
 
     /**
