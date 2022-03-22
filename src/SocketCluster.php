@@ -26,6 +26,23 @@ class SocketCluster
     {
         $this->websocket = $websocket;
     }
+    
+    /**
+     * Handshake
+     *
+     * @param string|null  $token
+     * @param Closure|null $callback
+     *
+     * @return boolean
+     */
+    public function handshake($token = null, Closure $callback = null)
+    {
+        $pubData = [
+            'authToken' => $token,
+        ];
+        
+        return $this->emit('#handshake', $pubData, $callback);
+    }
 
     /**
      * Publish Channel

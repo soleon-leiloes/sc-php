@@ -37,6 +37,7 @@ $optionsOrUri = [
   'host' => 'localhost',
   'port' => '443',
   'path' => '/socketcluster/',
+  'origin' => 'https://example.com',
   'query' => [
     'servicekey' => 'abc'
   ],
@@ -44,6 +45,9 @@ $optionsOrUri = [
 
 $websocket = \SocketCluster\WebSocket::factory($optionsOrUri);
 $socket = new \SocketCluster\SocketCluster($websocket);
+
+// Perform Handshake
+$socket->handshake('OPTIONAL_TOKEN');
 
 // Event Emit
 $data = ['message' => 'FooBar'];
