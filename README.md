@@ -37,6 +37,7 @@ $optionsOrUri = [
   'host' => 'localhost',
   'port' => '443',
   'path' => '/socketcluster/',
+  'origin' => 'https://example.com'
   'query' => [
     'servicekey' => 'abc'
   ],
